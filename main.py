@@ -29,7 +29,6 @@ if answer_state in states_list:
     turtle.penup()
     turtle.write(answer_state)
     turtle.goto(-state_x_cor, -state_y_cor)
-    # print(state_x)
 
 #An alternative to screen.exitonclick()
 turtle.mainloop()
