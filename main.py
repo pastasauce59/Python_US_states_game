@@ -21,14 +21,17 @@ states_list = data['state'].to_list()
 x_list = data['x'].to_list()
 y_list = data['y'].to_list()
 
-answer_state = screen.textinput(title="Guess the State", prompt="What's another state's name?").title()
-if answer_state in states_list:
-    state_index = states_list.index(answer_state)
-    state_x_cor = x_list[state_index]
-    state_y_cor = y_list[state_index]
-    turtle.penup()
-    turtle.write(answer_state)
-    turtle.goto(-state_x_cor, -state_y_cor)
+correct_state_guesses = []
+while len(correct_state_guesses) != 50:
+    answer_state = screen.textinput(title=f"{len(correct_state_guesses)}/50 States Correct", prompt="What's another state's name?").title()
+    if answer_state in states_list:
+        state_index = states_list.index(answer_state)
+        state_x_cor = x_list[state_index]
+        state_y_cor = y_list[state_index]
+        turtle.penup()
+        turtle.write(answer_state, True)
+        turtle.goto(-state_x_cor, -state_y_cor)
+        correct_state_guesses.append(answer_state)
 
 #An alternative to screen.exitonclick()
 turtle.mainloop()
