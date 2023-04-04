@@ -15,7 +15,7 @@ turtle.shape(image)
 # turtle.onscreenclick(get_mouse_click_cor)
 
 data = pandas.read_csv("50_states.csv")
-ny = data[data.state == "New York"]
+# ny = data[data.state == "New York"]
 
 states_list = data['state'].to_list()
 x_list = data['x'].to_list()
@@ -28,9 +28,10 @@ while len(correct_state_guesses) != 50:
         state_index = states_list.index(answer_state)
         state_x_cor = x_list[state_index]
         state_y_cor = y_list[state_index]
-        turtle.penup()
-        turtle.write(answer_state, True)
-        turtle.goto(-state_x_cor, -state_y_cor)
+        t = turtle.Turtle()
+        t.penup()
+        t.goto(state_x_cor, state_y_cor)
+        t.write(answer_state)
         correct_state_guesses.append(answer_state)
 
 #An alternative to screen.exitonclick()
