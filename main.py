@@ -9,28 +9,24 @@ screen.addshape(image)
 turtle.shape(image)
 
 
-
 # def get_mouse_click_cor(x,y):
 #     print(x, y)
 # turtle.onscreenclick(get_mouse_click_cor)
 
 data = pandas.read_csv("50_states.csv")
-# ny = data[data.state == "New York"]
 
 states_list = data['state'].to_list()
-x_list = data['x'].to_list()
-y_list = data['y'].to_list()
 
 correct_state_guesses = []
 while len(correct_state_guesses) != 50:
     answer_state = screen.textinput(title=f"{len(correct_state_guesses)}/50 States Correct", prompt="What's another state's name?").title()
     if answer_state in states_list:
-        state_index = states_list.index(answer_state)
-        state_x_cor = x_list[state_index]
-        state_y_cor = y_list[state_index]
+        state_data = data[data.state == answer_state]
         t = turtle.Turtle()
         t.penup()
-        t.goto(state_x_cor, state_y_cor)
+        t.goto(int(state_data.x), int(state_data.y))
+        #if wanting to use state_data instead of answer_state for state's name
+        # t.write(state_data.state.item())
         t.write(answer_state)
         correct_state_guesses.append(answer_state)
 
