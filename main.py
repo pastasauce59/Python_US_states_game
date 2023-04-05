@@ -20,6 +20,14 @@ states_list = data['state'].to_list()
 correct_state_guesses = []
 while len(correct_state_guesses) != 50:
     answer_state = screen.textinput(title=f"{len(correct_state_guesses)}/50 States Correct", prompt="What's another state's name?").title()
+    if answer_state == 'Exit':
+        states_to_learn = []
+        for state in states_list:
+            if state not in correct_state_guesses:
+                states_to_learn.append(state)
+        states_to_learn_data = pandas.DataFrame(states_to_learn)
+        states_to_learn_data.to_csv("states_to_learn.csv")
+        break
     if answer_state in states_list:
         state_data = data[data.state == answer_state]
         t = turtle.Turtle()
@@ -29,6 +37,3 @@ while len(correct_state_guesses) != 50:
         # t.write(state_data.state.item())
         t.write(answer_state)
         correct_state_guesses.append(answer_state)
-
-#An alternative to screen.exitonclick()
-turtle.mainloop()
