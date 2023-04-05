@@ -28,7 +28,8 @@ while len(correct_state_guesses) != 50:
         # states_to_learn_data = pandas.DataFrame(states_to_learn)
         # states_to_learn_data.to_csv("states_to_learn.csv")
         states_to_learn = [state for state in states_list if state not in correct_state_guesses]
-        print(states_to_learn)
+        states_to_learn_data = pandas.DataFrame(states_to_learn)
+        states_to_learn_data.to_csv("states_to_learn.csv")
         break
     if answer_state in states_list:
         state_data = data[data.state == answer_state]
